@@ -1,0 +1,125 @@
+body{
+    background-image: linear-gradient(rgb(8, 9, 44), rgb(11, 56, 67));
+}
+.grid-container{
+
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.grid{
+    /* background-color: rgba(52, 61, 61, 0.62); */
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+display: grid;
+gap: 5px;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+.enemy{
+    
+    color:rgb(139, 139, 210);
+    position: relative;
+    left: -25%;
+    z-index: 0;
+}
+.blocks{
+    background-color: blue;
+    
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+/* z-index: 3; */
+}
+.blank{
+   background-color: aqua;
+   height: 100px;
+   width: 100px;
+   position: relative;
+   z-index: 5;
+}
+.player{
+    
+    /* color:rgb(155, 212, 212) ; */
+    position: relative;
+    left: 25%;
+    z-index: 3;
+}
+
+
+.lost{
+    
+    color:rgb(155, 212, 212) ;
+    position: relative;
+    left: 25%;
+    z-index: 1;
+}
+h2{color: white;}
+
+.p1{
+   color: #ffffff;
+}
+.p2{
+   color: #ffffff;
+}.p3{
+   color: #ffffff;
+}
+.p4{
+   color: #ffffff;
+}.p5{
+   color: #ffffff;
+}
+.p6{
+   color: #ffffff;
+}.p7{
+   color: #ffffff;
+}
+.p8{
+   color: #ffffff;
+}.p9{
+   color: #ffffff;
+}
+.p10{
+   color: #ffffff;
+}.p11{
+   color: #ffffff;
+}
+.p12{
+   color: #ffffff;
+}.p13{
+   color: #ffffff;
+}
+.p14{
+   color: #ffffff;
+}.p15{
+   color: #ffffff;
+}
+.p16{
+   color: #ffffff;
+}.p17{
+   color: #ffffff;
+}
+.p18{
+   color: #ffffff;
+}.p19{
+   color: #ffffff;
+}.p20{
+    color: #ffffff;
+ }.p21{
+    color: #ffffff;
+ }
+ .p22{
+    color: #ffffff;
+ }.p23{
+    color: #ffffff;
+ }
+ .p24{
+    color: #ffffff;
+ }.p25{
+    color: #ffffff;
+ }
