@@ -20,13 +20,7 @@ function Lives(props){
     <div><h2 style={{color:'white'}}>{props.lives}</h2></div>
   )
 }
-function Blank(props)
-{
-return(
 
-  <div className= 'blank'>j</div>)
-
-}
 function Player(props)
 {
 return(
@@ -63,17 +57,116 @@ export default function Grid() {
 
 const [playerPosition,setPlayerPosition] = useState({x:2,y:2})
 const [enemyPosition,setEnemyPosition] = useState({x:5,y:3})
-let blocks = [{number:1,x:1,y:1,color:'red',zIndex:'1', enemyColor:'red'},{number:2,x:2,y:1,color:'red',zIndex:'1', enemyColor:'red'},{number:3,x:3,y:1,color:'red',zIndex:'1', enemyColor:'red'},{number:4,x:4,y:1,color:'red',zIndex:'1', enemyColor:'red'},{number:5,x:5,y:1,color:'red',zIndex:'1', enemyColor:'red'},{number:6,x:1,y:2,color:'red',zIndex:'1', enemyColor:'red'},{number:7,x:2,y:2,color:'red',zIndex:'1', enemyColor:'red'},{number:8,x:3,y:2,color:'red',zIndex:'1', enemyColor:'red'},{number:9,x:4,y:2,color:'red',zIndex:'1', enemyColor:'red'},{number:10,x:5,y:2,color:'red',zIndex:'1', enemyColor:'red'},{number:11,x:1,y:3,color:'red',zIndex:'1', enemyColor:'red'},{number:12,x:2,y:3,color:'red',zIndex:'1', enemyColor:'red'},{number:13,x:3,y:3,color:'red',zIndex:'1', enemyColor:'red'},{number:14,x:4,y:3,color:'red',zIndex:'1', enemyColor:'red'},{number:15,x:5,y:3,color:'red',zIndex:'1', enemyColor:'red'},{number:16,x:1,y:4,color:'red',zIndex:'1', enemyColor:'red'},{number:17,x:2,y:4,color:'red',zIndex:'1', enemyColor:'red'},{number:18,x:3,y:4,color:'red',zIndex:'1', enemyColor:'red'},{number:19,x:4,y:4,color:'red',zIndex:'1', enemyColor:'red'},{number:20,x:5,y:4,color:'red',zIndex:'1', enemyColor:'red'},{number:21,x:1,y:5,color:'red',zIndex:'1', enemyColor:'red'},{number:22,x:2,y:5,color:'red',zIndex:'1', enemyColor:'red'},{number:23,x:3,y:5,color:'red',zIndex:'1', enemyColor:'red'},{number:24,x:4,y:5,color:'red',zIndex:'1', enemyColor:'red'},{number:25,x:5,y:5,color:'red',zIndex:'1', enemyColor:'red'}]
+let blocks = [{number:1,x:1,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:2,x:2,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:3,x:3,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:4,x:4,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:5,x:5,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:6,x:1,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:7,x:2,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:8,x:3,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:9,x:4,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:10,x:5,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:11,x:1,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:12,x:2,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:13,x:3,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:14,x:4,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:15,x:5,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:16,x:1,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:17,x:2,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:18,x:3,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:19,x:4,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:20,x:5,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:21,x:1,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:22,x:2,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:23,x:3,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:24,x:4,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:25,x:5,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"}]
 
 
 const [lives, setLives] =  useState(3);
 
-// const chasePlayer = (e)
+function moveEnemy(player){
+
+
+  let enemyY = enemyPosition.y
+  let enemyX = enemyPosition.x
+let random = Math.floor(Math.random() * 5)
+
+
+  console.log(enemyX + ' x' + enemyY + " y")
+console.log(player.x )
+
+
+// let coordinates = [player.x,player.y]
+let xUp = (player.x - enemyX)
+let xDown = (enemyX - player.x)
+
+let yUp = (player.y - enemyY)
+let yDown = (enemyY - player.y)
+
+
+
+let xDiff
+let yDiff
+
+if(xUp < 0 && xDown > 0){
+
+  xDiff = xDown
+  
+}
+if(xUp>0 && xDown < 0){
+
+  xDiff = xUp
+}
+if(yUp < 0 && yDown > 0){
+
+  yDiff = yDown
+  
+}
+if(yUp>0 && yDown < 0){
+
+  yDiff = yUp
+}
+
+if((player.x === enemyX && player.y < enemyY) || (yDiff < xDiff && xDiff !== 0 && player.y < enemyY)){
+  if(enemyY < 5)
+        {enemyY += 1}
+    else{enemyY = 1;
+    };
+    console.log('hey')
+}
+
+else if((player.x === enemyX && player.y > enemyY) || (yDiff < xDiff && xDiff !== 0 && player.y < enemyY)){
+ if(enemyY > 1)
+        {enemyY -= 1}
+    else{enemyY = 5;
+    };
+}
+
+// else if((pla))
+
+
+  switch(player.x){
+//down
+
+    //up
+   
+    //right
+    case "ArrowRight":
+      if(enemyX < 5)
+        {enemyX += 1}
+    else{enemyX = 1;
+    };
+    break;
+    //left
+    case "ArrowLeft":
+      if(enemyX > 1)
+        {enemyX -= 1}
+    else{enemyX = 5;
+    };
+    break;
+    
+    }
+    
+console.log(enemyX + ' x' + enemyY + " y")
+
+
+  setTimeout(() => {
+    setEnemyPosition({x:enemyX,y:enemyY});
+  }, 1000);
+
+}
+
+// const [count,setCount] = useState(0)
+
+
+
+// chasePlayer()
  const handleKeyPress = (e)=>{
   e.preventDefault()
-console.log(e.key )
 
 
+  
+console.log(e.code )
+// console.log(e )
+// chasePlayer()
 let newX = playerPosition.x
 let newY = playerPosition.y
 
@@ -110,42 +203,46 @@ break;
 }
 
 setPlayerPosition({x:newX, y:newY})
-
+moveEnemy(playerPosition)
 
  }
 
 
+function move(char,color,charColor,charZindex){
 
-let hide 
 let activeBlock 
 
+  for(let i = 0;i<blocks.length;i++){
 
+    // {blocks.map((block)=>{ document.getElementsByClassName(block.number.toString()).setAttribute('hidden', "true")})}
+    
+    if(char.x == blocks[i].x && char.y == blocks[i].y){
+    
+    for(let si = 0;si<blocks.length;si ++){
+    
 
-for(let i = 0;i<blocks.length;i++){
+      
+    
+    if(activeBlock === blocks[si].number){
+    blocks[si][charColor] = "blue"
+    blocks[si][charZindex] = "1"
+    }
+    }
+    
+    blocks[i][charColor] = color
+    blocks[i][charZindex] = "3"
+    
+    activeBlock = blocks[i].number 
+    
+    
+    
+    }
+    
+    }
 
-// {blocks.map((block)=>{ document.getElementsByClassName(block.number.toString()).setAttribute('hidden', "true")})}
-
-if(playerPosition.x == blocks[i].x && playerPosition.y == blocks[i].y){
-
-for(let si = 0;si<blocks.length;si ++){
-
-
-if(activeBlock === blocks[si].number){
-blocks[si].color = "blue"
-blocks[si].zIndex = "1"
 }
-}
-
-blocks[i].color = "white"
-blocks[i].zIndex = "3"
-
-activeBlock = blocks[i].number 
-
-
-
-}
-
-}
+move(playerPosition,'white',"color","zIndex")
+move(enemyPosition,"red","enemyColor","enemyZindex")
 
 
 
@@ -154,9 +251,9 @@ activeBlock = blocks[i].number
 
  <>
  <Lives lives = {3}/>
-<div className="grid" tabIndex='0' autoFocus onKeyDown={handleKeyPress} >
+<div className="grid" tabIndex='0' autoFocus onKeyDown={handleKeyPress}>
 
-{blocks.map((block)=><Blocks number={block.number} xcord={block.x} ycord={block.y} key={block.number} class = {"blocks" +" "} enemy ={'enemy'} player = {'p'+block.number + " " + "player"} enemycolor = {{color:block.enemyColor}} hidden = {hide} color = {{color: block.color,zIndex:block.zIndex}}/>)}
+{blocks.map((block)=><Blocks number={block.number} xcord={block.x} ycord={block.y} key={block.number} class = {"blocks" +" "} enemy ={'enemy'} player = {'p'+block.number + " " + "player"} enemycolor = {{color:block.enemyColor,zIndex:block.enemyZindex}}  color = {{color: block.color,zIndex:block.zIndex}}/>)}
 
 
 </div>

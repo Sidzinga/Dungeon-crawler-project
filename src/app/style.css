@@ -24,7 +24,7 @@ grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     color:rgb(139, 139, 210);
     position: relative;
     left: -25%;
-    z-index: 0;
+    /* z-index: 0; */
 }
 .blocks{
     background-color: blue;
@@ -41,14 +41,14 @@ grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
    height: 100px;
    width: 100px;
    position: relative;
-   z-index: 5;
+   /* z-index: 5; */
 }
 .player{
     
     /* color:rgb(155, 212, 212) ; */
     position: relative;
     left: 25%;
-    z-index: 3;
+    /* z-index: 1; */
 }
 
 
