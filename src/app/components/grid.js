@@ -9,18 +9,21 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-// window.$ = $;
-// window.jQuery = jQuery;
-
-
-
-// $(".grid").hide()
 function Lives(props){
   return(
-    <div><h2 style={{color:'white'}}>{props.lives}</h2></div>
+    <div className=''><h2 style={{color:'white'}}>{props.lives}</h2></div>
   )
 }
 
+
+function Points(props){
+
+return(
+    <div className='points'><h2 style={{color:'white'}}>{props.points}</h2></div>
+  )
+  
+
+}
 function Player(props)
 {
 return(
@@ -47,6 +50,7 @@ function Blocks(props){
     return <div className={props.class} onKeyDown={props.handleKeyPress} value={props.number} data-xcoordinate = {props.xcord} data-ycoordinate = {props.ycord}>
   <Player player = {props.player} hidden = {props.hidden}  color = {props.color} zIndex = {props.zIndex}/>
   <Enemy enemy = {props.enemy} color = {props.enemycolor} />
+  <Points points = {props.points} />
  <div className= 'blank'></div>
 </div>
 }
@@ -56,121 +60,66 @@ function Blocks(props){
 export default function Grid() {
 
 const [playerPosition,setPlayerPosition] = useState({x:2,y:2})
-const [enemyPosition,setEnemyPosition] = useState({x:5,y:3})
+const [enemyPosition,setEnemyPosition] = useState({x:1,y:1})
 let blocks = [{number:1,x:1,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:2,x:2,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:3,x:3,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:4,x:4,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:5,x:5,y:1,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:6,x:1,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:7,x:2,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:8,x:3,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:9,x:4,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:10,x:5,y:2,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:11,x:1,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:12,x:2,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:13,x:3,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:14,x:4,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:15,x:5,y:3,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:16,x:1,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:17,x:2,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:18,x:3,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:19,x:4,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:20,x:5,y:4,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:21,x:1,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:22,x:2,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:23,x:3,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:24,x:4,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"},{number:25,x:5,y:5,color:'blue',zIndex:'1', enemyColor:'blue', enemyZindex:"1"}]
+const [caught,setCaught] = useState(false)
+
+const [points, setPoints] = useState(0)
+const [lives, setLives] =  useState(8);
 
 
-const [lives, setLives] =  useState(3);
 
 function moveEnemy(player){
 
-
   let enemyY = enemyPosition.y
   let enemyX = enemyPosition.x
-let random = Math.floor(Math.random() * 5)
 
-
-  console.log(enemyX + ' x' + enemyY + " y")
-console.log(player.x )
-
-
-// let coordinates = [player.x,player.y]
-let xUp = (player.x - enemyX)
-let xDown = (enemyX - player.x)
-
-let yUp = (player.y - enemyY)
-let yDown = (enemyY - player.y)
-
-
-
-let xDiff
-let yDiff
-
-if(xUp < 0 && xDown > 0){
-
-  xDiff = xDown
-  
-}
-if(xUp>0 && xDown < 0){
-
-  xDiff = xUp
-}
-if(yUp < 0 && yDown > 0){
-
-  yDiff = yDown
-  
-}
-if(yUp>0 && yDown < 0){
-
-  yDiff = yUp
+if (player.x > enemyX) {
+  if(enemyX < 5)
+    {enemyX += 1}
+else{enemyX = 1;
+};
 }
 
-if((player.x === enemyX && player.y < enemyY) || (yDiff < xDiff && xDiff !== 0 && player.y < enemyY)){
+
+else if(player.x < enemyX){
+  if(enemyX > 1)
+    {enemyX -= 1}
+else{enemyX = 5;
+};
+}
+
+else if(player.y > enemyY){
   if(enemyY < 5)
-        {enemyY += 1}
-    else{enemyY = 1;
-    };
-    console.log('hey')
+    {enemyY += 1}
+else{enemyY = 1;
+};
 }
 
-else if((player.x === enemyX && player.y > enemyY) || (yDiff < xDiff && xDiff !== 0 && player.y < enemyY)){
- if(enemyY > 1)
-        {enemyY -= 1}
-    else{enemyY = 5;
-    };
+else if(player.y < enemyY){
+  if(enemyY > 1)
+    {enemyY -= 1}
+else{enemyY = 5;
+};
 }
-
-// else if((pla))
-
-
-  switch(player.x){
-//down
-
-    //up
-   
-    //right
-    case "ArrowRight":
-      if(enemyX < 5)
-        {enemyX += 1}
-    else{enemyX = 1;
-    };
-    break;
-    //left
-    case "ArrowLeft":
-      if(enemyX > 1)
-        {enemyX -= 1}
-    else{enemyX = 5;
-    };
-    break;
-    
-    }
-    
-console.log(enemyX + ' x' + enemyY + " y")
+// console.log(enemyX + ' x' + enemyY + " y")
 
 
-  setTimeout(() => {
     setEnemyPosition({x:enemyX,y:enemyY});
-  }, 1000);
+
 
 }
-
-// const [count,setCount] = useState(0)
-
-
-
-// chasePlayer()
  const handleKeyPress = (e)=>{
   e.preventDefault()
 
-
-  
-console.log(e.code )
-// console.log(e )
-// chasePlayer()
 let newX = playerPosition.x
 let newY = playerPosition.y
 
 switch(e.key){
+
+case "Enter":
+
+  break;
 
 case "ArrowDown":
   if(newY < 5)
@@ -203,9 +152,61 @@ break;
 }
 
 setPlayerPosition({x:newX, y:newY})
-moveEnemy(playerPosition)
+ }
+
+
+function startOver(){
+
+setPlayerPosition({x:2, y:2})
+setEnemyPosition({x:1, y:1})
+setCaught(false)
+}
+
+
+function checkCaught(){
+
+
+  if(playerPosition.x === enemyPosition.x && playerPosition.y === enemyPosition.y){
+console.log("hi") 
+ setCaught(true)
+  
+  // console.log(" caught!!!")
+ }
+
+
+
+ if(caught === true && lives >0){
+
+setLives(lives - 1)
+       
+     console.log("caught here")
+   
+     startOver() 
+     console.log("Hey ")
+     }
 
  }
+
+
+
+useEffect(() => {
+
+  setTimeout(() => {
+
+
+    // setInterval()
+  moveEnemy(playerPosition) 
+checkCaught()
+
+  ;
+  }, 1000);
+
+  
+},[enemyPosition]);
+
+  
+
+  
 
 
 function move(char,color,charColor,charZindex){
@@ -213,15 +214,10 @@ function move(char,color,charColor,charZindex){
 let activeBlock 
 
   for(let i = 0;i<blocks.length;i++){
-
-    // {blocks.map((block)=>{ document.getElementsByClassName(block.number.toString()).setAttribute('hidden', "true")})}
     
     if(char.x == blocks[i].x && char.y == blocks[i].y){
     
     for(let si = 0;si<blocks.length;si ++){
-    
-
-      
     
     if(activeBlock === blocks[si].number){
     blocks[si][charColor] = "blue"
@@ -245,20 +241,19 @@ move(playerPosition,'white',"color","zIndex")
 move(enemyPosition,"red","enemyColor","enemyZindex")
 
 
-
   return (
 
 
  <>
- <Lives lives = {3}/>
+ <div className='top'><Lives lives = {lives}/> </div>
+
+ 
 <div className="grid" tabIndex='0' autoFocus onKeyDown={handleKeyPress}>
 
-{blocks.map((block)=><Blocks number={block.number} xcord={block.x} ycord={block.y} key={block.number} class = {"blocks" +" "} enemy ={'enemy'} player = {'p'+block.number + " " + "player"} enemycolor = {{color:block.enemyColor,zIndex:block.enemyZindex}}  color = {{color: block.color,zIndex:block.zIndex}}/>)}
-
-
+{blocks.map((block)=><Blocks number={block.number} points = {points} xcord={block.x} ycord={block.y} key={block.number} class = {"blocks" +" "} enemy ={'enemy'} player = {'p'+block.number + " " + "player"} enemycolor = {{color:block.enemyColor,zIndex:block.enemyZindex}}  color = {{color: block.color,zIndex:block.zIndex}}/>)}
 </div>
 
-
+<div className='bottom'>hey</div>
 
  </>
 

@@ -5,9 +5,13 @@ import Grid from "./components/grid";
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home() {
+
+  
   return (
  <>
- <div className="grid-container"><Grid/></div>
+
+
+ <div className="grid-container"><div className="content"><Grid/></div></div>
  
  </>
   );
