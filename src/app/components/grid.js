@@ -50,7 +50,7 @@ function Blocks(props){
     return <div className={props.class} onKeyDown={props.handleKeyPress} value={props.number} data-xcoordinate = {props.xcord} data-ycoordinate = {props.ycord}>
   <Player player = {props.player} hidden = {props.hidden}  color = {props.color} zIndex = {props.zIndex}/>
   <Enemy enemy = {props.enemy} color = {props.enemycolor} />
-  <Points points = {props.points} />
+  {/* <Points points = {props.points} /> */}
  <div className= 'blank'></div>
 </div>
 }
